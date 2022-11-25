@@ -101,7 +101,7 @@ function Homepage() {
                   className="btn btn-primary btn-block"
                   style={{ color: "white" }}
                 >
-                  Create Account
+                  Submit
                 </a>
               </div>
               <div

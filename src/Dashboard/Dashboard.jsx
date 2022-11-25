@@ -1,11 +1,13 @@
 import React from "react";
+import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 
 function Dashboard() {
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
       <Navbar />
-      <div className="container" style={{flex:0.9}}>
+      <div className="container" style={{ flex: 0.9 }}>
+        <Header />
         <div className="container">
           <div className="jumbotron">
             <h2 className="text-danger">
