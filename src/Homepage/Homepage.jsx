@@ -1,11 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Homepage.css";
 
 function Homepage() {
+  const navigate = useNavigate();
   return (
     <main id="main" className="login-body">
-      <div className="login-headline">
-        <img src="assets/images/ucc_logo.png" className="img-fluid" />
+      <div className="login-headline" style={{ marginTop: 40 }}>
+        <img
+          src="https://portal.ucc.edu.gh/reset/assets/images/ucc_logo.png"
+          className="img-fluid"
+        />
         <h3>Online Students' Portal</h3>
       </div>
       <div className="login-container">
@@ -51,7 +56,9 @@ function Homepage() {
         </section>
         <div className="vertical-line" />
         <section id="login-form">
-          <form action="../osis/authen.php" method="post" name="form" id="form">
+          {/* <form action="../osis/authen.php" method="post" name="form" id="form">
+           */}
+          <form method="post" name="form" id="form">
             <div className="form-group">
               <div className="input-group">
                 <div className="input-group-prepend">
@@ -91,18 +98,15 @@ function Homepage() {
             <div className="form-group row">
               <div className="col">
                 <input
-                  name="login"
+                  //   name="login"
                   type="submit"
                   className="btn btn-primary btn-block"
                   defaultValue="Login"
                 />
               </div>
-              <div className="col" style={{ alignSelf: "center" }}>
-                <a
-                  href="forgot_password.php"
-                  className="btn btn-link btn-block"
-                >
-                  Forgot password? Reset here!
+              <div className="col" style={{ alignSelf: "center" }} onClick={() => navigate("/signup")}>
+                <a link className="btn btn-link btn-block" href="">
+                  Create Account
                 </a>
               </div>
             </div>
@@ -131,7 +135,9 @@ function Homepage() {
           </ul>
         </section>
       </div>
-      <p className="footer">© University of Cape Coast - Students' Portal</p>
+      <p className="footer" style={{ marginBottom: 50 }}>
+        © University of Cape Coast - Students' Portal
+      </p>
     </main>
   );
 }
