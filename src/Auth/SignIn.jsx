@@ -1,10 +1,9 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
+import React from "react";
 
 function SignIn() {
-  return (
-   <Navbar />
-  )
+  return <div className="wrapper">
+    
+  </div>;
 }
 
-export default SignIn
+export default SignIn;
