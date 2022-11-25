@@ -25,22 +25,69 @@ function Navbar() {
           <li className="sidebar-item">
             <a className="sidebar-link" href="siteinformation">
               <i className="align-middle me-2" data-feather="paperclip"></i>
-              <span className="align-middle">Site Information</span>
-            </a>
-          </li>
-
-          <li className="sidebar-item">
-            <a className="sidebar-link" href="countries">
-              <i className="align-middle me-2" data-feather="globe"></i>
-              <span className="align-middle">Countries</span>
+              <span className="align-middle">Service Information</span>
             </a>
           </li>
           <li className="sidebar-item">
             <a className="sidebar-link" href="broadcast">
               <i className="align-middle me-2" data-feather="mic"></i>
-              <span className="align-middle">Broadcast</span>
+              <span className="align-middle">Personal Details</span>
             </a>
           </li>
+          <li className="sidebar-item">
+            <a className="sidebar-link" href="broadcast">
+              <i className="align-middle me-2" data-feather="mic"></i>
+              <span className="align-middle">Verify Details</span>
+            </a>
+          </li>
+          <li className="sidebar-item">
+            <a className="sidebar-link" href="countries">
+              <i className="align-middle me-2" data-feather="globe"></i>
+              <span className="align-middle">Past Questions (Manuel)</span>
+            </a>
+          </li>
+          <li className="sidebar-item">
+            <a className="sidebar-link" href="broadcast">
+              <i className="align-middle me-2" data-feather="mic"></i>
+              <span className="align-middle">Statement of Results</span>
+            </a>
+          </li>
+          <li className="sidebar-item">
+            <a className="sidebar-link" href="broadcast">
+              <i className="align-middle me-2" data-feather="mic"></i>
+              <span className="align-middle">Survey</span>
+            </a>
+          </li>{" "}
+          <li className="sidebar-item">
+            <a className="sidebar-link" href="broadcast">
+              <i className="align-middle me-2" data-feather="mic"></i>
+              <span className="align-middle">Registration</span>
+            </a>
+          </li>{" "}
+          <li className="sidebar-item">
+            <a className="sidebar-link" href="broadcast">
+              <i className="align-middle me-2" data-feather="mic"></i>
+              <span className="align-middle">Fees</span>
+            </a>
+          </li>{" "}
+          <li className="sidebar-item">
+            <a className="sidebar-link" href="broadcast">
+              <i className="align-middle me-2" data-feather="mic"></i>
+              <span className="align-middle">Exam Time Table</span>
+            </a>
+          </li>{" "}
+          <li className="sidebar-item">
+            <a className="sidebar-link" href="broadcast">
+              <i className="align-middle me-2" data-feather="mic"></i>
+              <span className="align-middle">FAQ</span>
+            </a>
+          </li>{" "}
+          <li className="sidebar-item">
+            <a className="sidebar-link" href="broadcast">
+              <i className="align-middle me-2" data-feather="mic"></i>
+              <span className="align-middle">Reset Password</span>
+            </a>
+          </li>{" "}
         </ul>
       </div>
     </nav>
