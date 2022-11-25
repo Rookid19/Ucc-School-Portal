@@ -96,15 +96,19 @@ function Homepage() {
               </div>
             </div>
             <div className="form-group row">
-              <div className="col">
-                <input
-                  //   name="login"
-                  type="submit"
+              <div className="col" onClick={() => navigate("/dashboard")}>
+                <a
                   className="btn btn-primary btn-block"
-                  defaultValue="Login"
-                />
+                  style={{ color: "white" }}
+                >
+                  Create Account
+                </a>
               </div>
-              <div className="col" style={{ alignSelf: "center" }} onClick={() => navigate("/signup")}>
+              <div
+                className="col"
+                style={{ alignSelf: "center" }}
+                onClick={() => navigate("/signup")}
+              >
                 <a link className="btn btn-link btn-block" href="">
                   Create Account
                 </a>
@@ -128,8 +132,9 @@ function Homepage() {
               <strong>054-5802-062 or 0545801203 </strong>
             </li>
             <li>
-              System support<span className="text-danger"> Whatsapp Only</span>{" "}
-              MIS office on: <strong>0244080587</strong>
+              System support
+              <span className="text-danger"> Whatsapp Only</span> MIS office on:{" "}
+              <strong>0244080587</strong>
             </li>
             {/* <li>System support<span class="text-danger"> Whatsapp Only</span> MIS office on: <strong>0572568591</strong></li> */}
           </ul>
