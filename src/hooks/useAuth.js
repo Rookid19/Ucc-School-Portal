@@ -72,12 +72,38 @@ export const AuthProvider = ({ children }) => {
     navigate("/");
   };
 
+  //signin
+  const signin = async (indexNumber, password, setLoading) => {
+    setLoading("Loading....");
+    const q = query(
+      collection(db, "User", indexNumber.toLowerCase()),
+      where("indexNumber", "==", indexNumber.trim()),
+      where("password", "==", password.trim())
+    );
+
+    const querySnapshotCount = await getCountFromServer(q);
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshotCount.data().count > 0) {
+      setUserInfo(
+        querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+      navigate("/dashboard")
+    } else {
+      alert("User does not exists");
+    }
+  };
+
   // allows you to memoize expensive functions so that you can avoid calling them on every render
   const memoVaue = useMemo(
     () => ({
       userInfo,
       signup,
       signout,
+      signin
     }),
     [userInfo]
   );
