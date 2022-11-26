@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 function SignUp() {
   const navigate = useNavigate();
+  const { signup } = useAuth();
 
   const [indexNumber, setIndexNumber] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState("Create Account");
+
+  //input validation
 
   return (
     <main id="main" className="login-body">
@@ -36,6 +41,8 @@ function SignUp() {
                   placeholder="Index Number"
                   aria-label="Registration Number"
                   aria-describedby="regno"
+                  onChange={(text) => setIndexNumber(text.target.value)}
+                  value={indexNumber}
                 />
               </div>
             </div>
@@ -54,6 +61,8 @@ function SignUp() {
                   placeholder="Password"
                   aria-label="Password"
                   aria-describedby="password"
+                  value={password}
+                  onChange={(text) => setPassword(text.target.value)}
                 />
               </div>
             </div>
@@ -70,8 +79,8 @@ function SignUp() {
                   name="Phone"
                   required=""
                   placeholder="Phone number"
-                  aria-label="Password"
-                  aria-describedby="password"
+                  value={phone}
+                  onChange={(text) => setPhone(text.target.value)}
                 />
               </div>
             </div>
@@ -81,9 +90,12 @@ function SignUp() {
                   className="btn btn-primary btn-block"
                   defaultValue="Create Account"
                   style={{ color: "white" }}
-                  onClick={() => }
+                  onClick={() =>
+                    signup(indexNumber, password, phone, setLoading)
+                  }
+                  // disabled={validation}
                 >
-                  Create Account
+                  {loading}
                 </a>
               </div>
               <div
