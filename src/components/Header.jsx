@@ -1,6 +1,8 @@
 import React from "react";
+import useAuth from "../hooks/useAuth";
 
 function Header() {
+  const { userInfo,signout } = useAuth();
   return (
     <nav className="navbar navbar-expand navbar-theme">
       <a className="sidebar-toggle d-flex me-2">
@@ -15,15 +17,20 @@ function Header() {
               href="#"
               id="userDropdown"
               data-bs-toggle="dropdown"
-              style={{ color: "red" }}
+              style={{ color: "black" }}
             >
-              <i className="align-middle fas fa-cog"></i>
+              {userInfo[0]?.indexNumber}
+              <i
+                style={{ color: "red", marginLeft: 10 }}
+                className="align-middle fas fa-cog"
+              ></i>
             </a>
             <div
               className="dropdown-menu dropdown-menu-end"
               aria-labelledby="userDropdown"
+              onClick={signout}
             >
-              <a className="dropdown-item" href="/">
+              <a className="dropdown-item" >
                 <i className="align-middle me-1 fas fa-fw fa-arrow-alt-circle-right"></i>
                 Sign out
               </a>

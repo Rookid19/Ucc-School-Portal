@@ -16,12 +16,15 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [data, setData] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
+
+  const navigate = useNavigate();
 
   //sign up
   const signup = async (indexNumber, password, phone, setLoading) => {
@@ -29,15 +32,13 @@ export const AuthProvider = ({ children }) => {
       try {
         setLoading("Loading....");
         const q = query(
-          collection(db, "User",indexNumber.toLowerCase()),
+          collection(db, "User", indexNumber.toLowerCase()),
           where("indexNumber", "==", indexNumber.trim())
         );
         const querySnapshot = await getCountFromServer(q);
         if (querySnapshot.data().count > 0) {
           alert("User already exists");
         } else {
-          alert("No user");
-
           try {
             await setDoc(doc(db, "User", indexNumber.toLowerCase() + "/info"), {
               indexNumber,
@@ -45,7 +46,11 @@ export const AuthProvider = ({ children }) => {
               phone,
               timestamp: serverTimestamp(),
             })
-              .then(() => alert("Account created succesfully"))
+              .then(() => {
+                // alert("Account created succesfully");
+                setUserInfo([{ indexNumber }]);
+                navigate("/dashboard");
+              })
               .catch((error) => alert(error));
           } catch (error) {
             alert(error);
@@ -61,17 +66,20 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  //   useEffect(() => {
-  //     console.log("data---> " + data.length);
-  //   }, [data]);
+  //sign out
+  const signout = () => {
+    setUserInfo();
+    navigate("/");
+  };
 
   // allows you to memoize expensive functions so that you can avoid calling them on every render
   const memoVaue = useMemo(
     () => ({
-      user: "ama",
+      userInfo,
       signup,
+      signout,
     }),
-    []
+    [userInfo]
   );
 
   return (

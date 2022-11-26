@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
+import useAuth from "../hooks/useAuth";
 
 function Dashboard() {
+  const { userInfo } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userInfo.length == 0) {
+      navigate("/");
+    }
+  }, []);
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
       <Navbar />
@@ -27,7 +37,7 @@ function Dashboard() {
                 href="../downloads/Resumption-202122-sem1.pdf"
                 className="btn btn-primary btn-small"
                 target="_blank"
-                style={{marginRight:15}}
+                style={{ marginRight: 15 }}
               >
                 Resumption
               </a>
