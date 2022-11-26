@@ -17,7 +17,7 @@ function Navbar() {
           <img
             src="https://portal.ucc.edu.gh/reset/assets/images/ucc_logo.png"
             className="img-fluid"
-            style={{ width: 70, marginRight: 20 }}
+            style={{ width: 70, marginRight: 20, marginLeft: 10 }}
           />
           <h5>Online Students Portal</h5>
         </div>

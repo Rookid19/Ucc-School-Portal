@@ -29,7 +29,7 @@ function SignUp() {
                   className="form-control"
                   name="username"
                   required=""
-                  placeholder="Email"
+                  placeholder="Index Number"
                   aria-label="Registration Number"
                   aria-describedby="regno"
                 />
@@ -57,7 +57,7 @@ function SignUp() {
               <div className="input-group">
                 <div className="input-group-prepend">
                   <span className="input-group-text" id="passcode">
-                    <i className="fas fa-key fa-lg fa-fw" />
+                    <i className="fas fa-phone fa-lg fa-fw" />
                   </span>
                 </div>
                 <input

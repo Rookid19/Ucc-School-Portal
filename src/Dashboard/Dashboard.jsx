@@ -27,6 +27,7 @@ function Dashboard() {
                 href="../downloads/Resumption-202122-sem1.pdf"
                 className="btn btn-primary btn-small"
                 target="_blank"
+                style={{marginRight:15}}
               >
                 Resumption
               </a>
