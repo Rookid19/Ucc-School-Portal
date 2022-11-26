@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 import "./Homepage.css";
 
 function Homepage() {
   const navigate = useNavigate();
+  const { user } = useAuth();
   return (
     <main id="main" className="login-body">
       <div className="login-headline" style={{ marginTop: 40 }}>
@@ -11,7 +13,7 @@ function Homepage() {
           src="https://portal.ucc.edu.gh/reset/assets/images/ucc_logo.png"
           className="img-fluid"
         />
-        <h3>Online Students' Portal</h3>
+        <h3>Online Students' Portal </h3>
       </div>
       <div className="login-container">
         <section id="info-section">

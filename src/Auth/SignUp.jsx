@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  const [indexNumber, setIndexNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+
   return (
     <main id="main" className="login-body">
       <div className="login-headline" style={{ marginTop: 40 }}>
@@ -73,12 +77,14 @@ function SignUp() {
             </div>
             <div className="form-group row">
               <div className="col">
-                <input
-                    // name="login"
-                //   type="submit"
+                <a
                   className="btn btn-primary btn-block"
                   defaultValue="Create Account"
-                />
+                  style={{ color: "white" }}
+                  onClick={() => }
+                >
+                  Create Account
+                </a>
               </div>
               <div
                 className="col"
