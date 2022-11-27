@@ -1,6 +1,4 @@
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import {
-  addDoc,
   collection,
   doc,
   getCountFromServer,
@@ -101,7 +99,7 @@ export const AuthProvider = ({ children }) => {
       signout,
       signin,
     }),
-    [userInfo, signup, signout, signin]
+    [userInfo]
   );
 
   return (

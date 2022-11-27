@@ -1,6 +1,6 @@
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
-import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import useAuth from "../hooks/useAuth";
 
@@ -64,7 +64,7 @@ function OTP() {
       })
       .catch((error) => {
         alert("Wrong verification code");
-        navigate("/");
+        // navigate("/");
         // alert("wrong otp");
         // User couldn't sign in (bad verification code?)
         // ...
