@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import React, { createContext, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, db } from "../firebase";
+import { db } from "../firebase";
 
 export const AuthContext = createContext({});
 
