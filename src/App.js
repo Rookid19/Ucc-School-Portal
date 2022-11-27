@@ -10,12 +10,13 @@ function App() {
   const { user } = useAuth();
   return (
     <div className="App">
-      <Routes>
+      {/* <Routes>
         <Route path="/otp/verification" element={<Otp />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Homepage user={user} />} />
-      </Routes>
+      </Routes> */}
+      <h1>My money</h1>
     </div>
   );
 }

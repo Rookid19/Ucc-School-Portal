@@ -24,7 +24,7 @@ function Homepage() {
             src="https://portal.ucc.edu.gh/reset/assets/images/ucc_logo.png"
             className="img-fluid"
           />
-          <h3>Online Students' Portal randy</h3>
+          <h3>Online Students' Portal </h3>
         </div>
       </Fade>
       <div className="login-container">
