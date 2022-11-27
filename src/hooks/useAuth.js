@@ -42,7 +42,50 @@ export const AuthProvider = ({ children }) => {
             })
               .then(() => {
                 setUserInfo([{ data: { indexNumber } }]);
-                navigate("/dashboard");
+                // navigate("/dashboard");
+
+                const setUpRecaptcha = () => {
+                  window.recaptchaVerifier = new RecaptchaVerifier(
+                    "recaptcha-container",
+                    {
+                      size: "invisible",
+                      callback: (response) => {
+                        // reCAPTCHA solved, allow signInWithPhoneNumber.
+                        console.log("recaptach resolved");
+                        onSignInSubmit();
+                      },
+                    },
+                    auth
+                  );
+                };
+
+                const onSignInSubmit = (event) => {
+                  event.preventDefault();
+                  setUpRecaptcha();
+                  const phoneNumber = "+233240727345";
+                  const appVerifier = window.recaptchaVerifier;
+
+                  signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+                    .then((confirmationResult) => {
+                      // SMS sent. Prompt user to type the code from the message, then sign the
+                      // user in with confirmationResult.confirm(code).
+                      window.confirmationResult = confirmationResult;
+                      console.log(
+                        "confirmationResult ----> " +
+                          JSON.stringify(confirmationResult)
+                      );
+                      // ...
+                    })
+                    .catch((error) => {
+                      alert(error);
+                      console.log("Invalid Otp verification code");
+                      // Error; SMS not sent
+                      // ...
+                    });
+                };
+
+                // calling recaptha function
+                setUpRecaptcha()
               })
               .catch((error) => alert(error));
           } catch (error) {
