@@ -10,7 +10,7 @@ function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userInfo.length == 0) {
+    if (userInfo?.length == 0) {
       navigate("/");
     }
   }, []);
