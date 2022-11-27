@@ -9,13 +9,7 @@ import {
   setDoc,
   where,
 } from "firebase/firestore";
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { createContext, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 
@@ -47,8 +41,7 @@ export const AuthProvider = ({ children }) => {
               timestamp: serverTimestamp(),
             })
               .then(() => {
-                // alert("Account created succesfully");
-                setUserInfo([{ indexNumber }]);
+                setUserInfo([{ data: { indexNumber } }]);
                 navigate("/dashboard");
               })
               .catch((error) => alert(error));
@@ -83,7 +76,7 @@ export const AuthProvider = ({ children }) => {
 
     const querySnapshotCount = await getCountFromServer(q);
     const querySnapshot = await getDocs(q);
-
+    console.log("count----> " + querySnapshotCount.data().count);
     if (querySnapshotCount.data().count > 0) {
       setUserInfo(
         querySnapshot.docs.map((doc) => ({
@@ -91,10 +84,11 @@ export const AuthProvider = ({ children }) => {
           data: doc.data(),
         }))
       );
-      navigate("/dashboard")
+      navigate("/dashboard");
     } else {
-      alert("User does not exists");
+      alert("Wrong combination of index number and password");
     }
+    setLoading("Submit");
   };
 
   // allows you to memoize expensive functions so that you can avoid calling them on every render
@@ -103,9 +97,9 @@ export const AuthProvider = ({ children }) => {
       userInfo,
       signup,
       signout,
-      signin
+      signin,
     }),
-    [userInfo]
+    [userInfo, signup, signout, signin]
   );
 
   return (
