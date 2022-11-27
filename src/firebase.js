@@ -8,13 +8,13 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBeOcOfeVkhO4hP363KgBdUJ70_C1igfPs",
-  authDomain: "ucc-portal-2b7ba.firebaseapp.com",
-  projectId: "ucc-portal-2b7ba",
-  storageBucket: "ucc-portal-2b7ba.appspot.com",
-  messagingSenderId: "908887399115",
-  appId: "1:908887399115:web:b0c8ceb81518a66427994e",
-  measurementId: "G-NTQQK0H51N",
+  apiKey: "AIzaSyC3xFUCmxy2eEjYbrIB9-e1R2uMmTpgyPk",
+  authDomain: "paysfintechapp.firebaseapp.com",
+  projectId: "paysfintechapp",
+  storageBucket: "paysfintechapp.appspot.com",
+  messagingSenderId: "403273464397",
+  appId: "1:403273464397:web:9f94806906d0c040933a04",
+  measurementId: "G-NDG2PZL617"
 };
 
 const app = initializeApp(firebaseConfig);

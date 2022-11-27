@@ -1,7 +1,75 @@
-import React, { useState } from "react";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import React, { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
+import useAuth from "../hooks/useAuth";
 
 function OTP() {
+  const navigate = useNavigate();
   const [otp, setOtp] = useState("");
+  const { userInfo } = useAuth();
+
+  let mobile = "+233" + userInfo[0]?.phone;
+  const setUpRecaptcha = () => {
+    window.recaptchaVerifier = new RecaptchaVerifier(
+      "recaptcha-container",
+      {
+        size: "invisible",
+        callback: (response) => {
+          // reCAPTCHA solved, allow signInWithPhoneNumber.
+          console.log("recaptach resolved");
+          //   onSignInSubmit();
+        },
+      },
+      auth
+    );
+  };
+
+  const onSignInSubmit = (event) => {
+    // event.preventDefault();
+    setUpRecaptcha();
+    const phoneNumber = "+233" + userInfo[0]?.data?.phone;
+    const appVerifier = window.recaptchaVerifier;
+
+    signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+      .then((confirmationResult) => {
+        // SMS sent. Prompt user to type the code from the message, then sign the
+        // user in with confirmationResult.confirm(code).
+        window.confirmationResult = confirmationResult;
+        console.log(
+          "confirmationResult ----> " + JSON.stringify(confirmationResult)
+        );
+      })
+      .catch((error) => {
+        alert(error);
+        navigate("/");
+        // console.log("Invalid Otp verification code");
+        // Error; SMS not sent
+        // ...
+      });
+  };
+
+  const verifyOtp = (e) => {
+    e.preventDefault();
+    const code = otp;
+    let confirmationResult = window.confirmationResult;
+    confirmationResult
+      .confirm(code)
+      .then((result) => {
+        // User signed in successfully.
+        const user = result.user;
+        // // ...
+        // alert("Successully signed in");
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        alert("Wrong verification code");
+        navigate("/");
+        // alert("wrong otp");
+        // User couldn't sign in (bad verification code?)
+        // ...
+      });
+  };
 
   return (
     <main id="main" className="login-body">
@@ -10,7 +78,7 @@ function OTP() {
           src="https://portal.ucc.edu.gh/reset/assets/images/ucc_logo.png"
           className="img-fluid"
         />
-        <h3>Online Students' Portal</h3>
+        <h3>Online Students' Portal </h3>
       </div>
       <div className="login-container">
         <div className="vertical-line" />
@@ -44,10 +112,17 @@ function OTP() {
                   className="btn btn-primary btn-block"
                   defaultValue="Create Account"
                   style={{ color: "white" }}
-                  // onClick={() =>
-                  //   signup(indexNumber, password, phone, setLoading)
-                  // }
-                  // disabled={validation}
+                  onClick={onSignInSubmit}
+                >
+                  Get Otp
+                </a>
+              </div>
+              <div className="col">
+                <a
+                  className="btn btn-primary btn-block"
+                  defaultValue="Create Account"
+                  style={{ color: "white" }}
+                  onClick={verifyOtp}
                 >
                   Verify Otp
                 </a>
@@ -77,6 +152,7 @@ function OTP() {
             {/* <li>System support<span class="text-danger"> Whatsapp Only</span> MIS office on: <strong>0572568591</strong></li> */}
           </ul>
         </section>
+        <div id="recaptcha-container"></div>
       </div>
       <p className="footer" style={{ marginBottom: 50 }}>
         © University of Cape Coast - Students' Portal

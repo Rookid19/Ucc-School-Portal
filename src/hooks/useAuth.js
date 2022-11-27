@@ -1,3 +1,4 @@
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import {
   addDoc,
   collection,
@@ -11,7 +12,7 @@ import {
 } from "firebase/firestore";
 import React, { createContext, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 
 export const AuthContext = createContext({});
 
@@ -41,51 +42,9 @@ export const AuthProvider = ({ children }) => {
               timestamp: serverTimestamp(),
             })
               .then(() => {
-                setUserInfo([{ data: { indexNumber } }]);
-                // navigate("/dashboard");
+                setUserInfo([{ data: { indexNumber, phone } }]);
 
-                const setUpRecaptcha = () => {
-                  window.recaptchaVerifier = new RecaptchaVerifier(
-                    "recaptcha-container",
-                    {
-                      size: "invisible",
-                      callback: (response) => {
-                        // reCAPTCHA solved, allow signInWithPhoneNumber.
-                        console.log("recaptach resolved");
-                        onSignInSubmit();
-                      },
-                    },
-                    auth
-                  );
-                };
-
-                const onSignInSubmit = (event) => {
-                  event.preventDefault();
-                  setUpRecaptcha();
-                  const phoneNumber = "+233240727345";
-                  const appVerifier = window.recaptchaVerifier;
-
-                  signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-                    .then((confirmationResult) => {
-                      // SMS sent. Prompt user to type the code from the message, then sign the
-                      // user in with confirmationResult.confirm(code).
-                      window.confirmationResult = confirmationResult;
-                      console.log(
-                        "confirmationResult ----> " +
-                          JSON.stringify(confirmationResult)
-                      );
-                      // ...
-                    })
-                    .catch((error) => {
-                      alert(error);
-                      console.log("Invalid Otp verification code");
-                      // Error; SMS not sent
-                      // ...
-                    });
-                };
-
-                // calling recaptha function
-                setUpRecaptcha()
+                navigate("/");
               })
               .catch((error) => alert(error));
           } catch (error) {
@@ -127,7 +86,7 @@ export const AuthProvider = ({ children }) => {
           data: doc.data(),
         }))
       );
-      navigate("/dashboard");
+      navigate("/otp/verification");
     } else {
       alert("Wrong combination of index number and password");
     }

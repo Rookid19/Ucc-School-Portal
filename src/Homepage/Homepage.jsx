@@ -14,63 +14,63 @@ function Homepage() {
   const [loading, setLoading] = useState("Submit");
 
   // [A-Z]{2}/[A-Z]{3}/[0-9]{2}/[0-9]{4}
-  const setUpRecaptcha = () => {
-    window.recaptchaVerifier = new RecaptchaVerifier(
-      "recaptcha-container",
-      {
-        size: "invisible",
-        callback: (response) => {
-          // reCAPTCHA solved, allow signInWithPhoneNumber.
-          console.log("recaptach resolved");
-          onSignInSubmit();
-        },
-      },
-      auth
-    );
-  };
+  // const setUpRecaptcha = () => {
+  //   window.recaptchaVerifier = new RecaptchaVerifier(
+  //     "recaptcha-container",
+  //     {
+  //       size: "invisible",
+  //       callback: (response) => {
+  //         // reCAPTCHA solved, allow signInWithPhoneNumber.
+  //         console.log("recaptach resolved");
+  //         onSignInSubmit();
+  //       },
+  //     },
+  //     auth
+  //   );
+  // };
 
-  const onSignInSubmit = (event) => {
-    event.preventDefault();
-    setUpRecaptcha();
-    const phoneNumber = "+233240727345";
-    const appVerifier = window.recaptchaVerifier;
+  // const onSignInSubmit = (event) => {
+  //   event.preventDefault();
+  //   setUpRecaptcha();
+  //   const phoneNumber = "+233240727345";
+  //   const appVerifier = window.recaptchaVerifier;
 
-    signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-      .then((confirmationResult) => {
-        // SMS sent. Prompt user to type the code from the message, then sign the
-        // user in with confirmationResult.confirm(code).
-        window.confirmationResult = confirmationResult;
-        console.log(
-          "confirmationResult ----> " + JSON.stringify(confirmationResult)
-        );
-        // ...
-      })
-      .catch((error) => {
-        alert(error);
-        console.log("Invalid Otp verification code");
-        // Error; SMS not sent
-        // ...
-      });
-  };
+  //   signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+  //     .then((confirmationResult) => {
+  //       // SMS sent. Prompt user to type the code from the message, then sign the
+  //       // user in with confirmationResult.confirm(code).
+  //       window.confirmationResult = confirmationResult;
+  //       console.log(
+  //         "confirmationResult ----> " + JSON.stringify(confirmationResult)
+  //       );
+  //       // ...
+  //     })
+  //     .catch((error) => {
+  //       alert(error);
+  //       console.log("Invalid Otp verification code");
+  //       // Error; SMS not sent
+  //       // ...
+  //     });
+  // };
 
-  const verifyOtp = (e) => {
-    e.preventDefault();
-    const code = "520673";
-    let confirmationResult = window.confirmationResult;
-    confirmationResult
-      .confirm(code)
-      .then((result) => {
-        // User signed in successfully.
-        const user = result.user;
-        // ...
-        alert("Successully signed in");
-      })
-      .catch((error) => {
-        alert(error);
-        // User couldn't sign in (bad verification code?)
-        // ...
-      });
-  };
+  // const verifyOtp = (e) => {
+  //   e.preventDefault();
+  //   const code = "520673";
+  //   let confirmationResult = window.confirmationResult;
+  //   confirmationResult
+  //     .confirm(code)
+  //     .then((result) => {
+  //       // User signed in successfully.
+  //       const user = result.user;
+  //       // ...
+  //       alert("Successully signed in");
+  //     })
+  //     .catch((error) => {
+  //       alert(error);
+  //       // User couldn't sign in (bad verification code?)
+  //       // ...
+  //     });
+  // };
 
   return (
     <main id="main" className="login-body">
@@ -226,7 +226,8 @@ function Homepage() {
         © University of Cape Coast - Students' Portal
       </p>
 
-      <form action="" onSubmit={onSignInSubmit}>
+      {/* onSubmit={onSignInSubmit} */}
+      <form action="" >
         <div id="recaptcha-container"></div>
         <button
           style={{ backgroundColor: "red", marginTop: -20 }}
@@ -237,7 +238,7 @@ function Homepage() {
         </button>
         <button
           style={{ backgroundColor: "blue", marginTop: -20 }}
-          onClick={verifyOtp}
+          // onClick={verifyOtp}
         >
           Verify
         </button>

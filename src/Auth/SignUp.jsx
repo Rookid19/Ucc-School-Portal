@@ -43,6 +43,7 @@ function SignUp() {
                   aria-describedby="regno"
                   onChange={(text) => setIndexNumber(text.target.value)}
                   value={indexNumber}
+                  maxLength={14}
                 />
               </div>
             </div>
@@ -74,18 +75,21 @@ function SignUp() {
                   </span>
                 </div>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control"
                   name="Phone"
                   required=""
                   placeholder="Phone number"
                   value={phone}
-                  onChange={(text) => setPhone(text.target.value)}
+                  onChange={(text) => setPhone(text.target.value.replace(/\D/g, ""))}
+                  maxLength={10}
                 />
               </div>
             </div>
             <div className="form-group row">
               <div className="col">
+                <div id="recaptcha-container"></div>
+
                 <a
                   className="btn btn-primary btn-block"
                   defaultValue="Create Account"
