@@ -103,7 +103,11 @@ export const AuthProvider = ({ children }) => {
   );
 
   return (
+    <>
+    <div>hello</div>
     <AuthContext.Provider value={memoVaue}>{children}</AuthContext.Provider>
+
+</>
   );
 };
 
