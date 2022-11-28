@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
               })
               .catch((error) => alert(error));
           } catch (error) {
-            alert(error);
+            alert("Wrong index number format");
           }
         }
       } catch (error) {

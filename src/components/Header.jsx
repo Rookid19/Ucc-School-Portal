@@ -26,7 +26,7 @@ function Header() {
               data-bs-toggle="dropdown"
               style={{ color: "black" }}
             >
-              {userInfo[0]?.data?.indexNumber}
+              {userInfo[0]?.data?.indexNumber.toUpperCase()}
               <i
                 style={{ color: "red", marginLeft: 10 ,fontSize: 18}}
                 className="align-middle fas fa-cog"
