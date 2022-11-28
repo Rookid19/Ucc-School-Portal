@@ -16,6 +16,7 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState([]);
+  const [navRef, setNavRef] = useState("");
 
   const navigate = useNavigate();
 
@@ -98,8 +99,10 @@ export const AuthProvider = ({ children }) => {
       signup,
       signout,
       signin,
+      setNavRef,
+      navRef,
     }),
-    [userInfo]
+    [userInfo,navRef]
   );
 
   return (

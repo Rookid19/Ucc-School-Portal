@@ -10,13 +10,21 @@ function App() {
   const { user } = useAuth();
   return (
     <div className="App">
+      {/* <div
+        style={{
+          fontSize: 80,
+          marginTop:250,
+          textAlign: "center",
+        }}
+      >
+        🎉🎯💸💰
+      </div> */}
       <Routes>
         <Route path="/otp/verification" element={<Otp />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Homepage user={user} />} />
       </Routes>
-      {/* <h1>My money</h1> */}
     </div>
   );
 }

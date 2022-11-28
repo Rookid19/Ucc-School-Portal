@@ -15,7 +15,6 @@ function Homepage() {
 
   // [A-Z]{2}/[A-Z]{3}/[0-9]{2}/[0-9]{4}
 
-
   return (
     <main id="main" className="login-body">
       <Fade top cascade>
@@ -169,24 +168,6 @@ function Homepage() {
       <p className="footer" style={{ marginBottom: 50 }}>
         © University of Cape Coast - Students' Portal
       </p>
-
-      {/* onSubmit={onSignInSubmit} */}
-      <form action="" >
-        <div id="recaptcha-container"></div>
-        <button
-          style={{ backgroundColor: "red", marginTop: -20 }}
-          // onClick={onSignInSubmit}
-          type="submit"
-        >
-          SMS
-        </button>
-        <button
-          style={{ backgroundColor: "blue", marginTop: -20 }}
-          // onClick={verifyOtp}
-        >
-          Verify
-        </button>
-      </form>
     </main>
   );
 }

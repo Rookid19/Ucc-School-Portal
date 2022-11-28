@@ -141,7 +141,7 @@ p.footer {
 
   .login-body {
     width: 100vw !important;
-    height: 100vh !important;
+    height: 100% !important;
   }
 
   .login-container {
@@ -154,6 +154,8 @@ p.footer {
     width: auto;
     height: auto;
     margin-bottom: -30px;
+    /* margin-top: 100px; */
+
   }
 
   .login-headline h3 {
